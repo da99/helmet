@@ -1,4 +1,7 @@
 
+/// <reference no-default-lib="true" />
+/// <reference lib="esnext" />
+import 'https://raw.githubusercontent.com/cloudflare/workers-types/master/index.d.ts';
 
 // =============================================================================
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy
