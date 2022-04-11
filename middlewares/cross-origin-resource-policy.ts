@@ -1,4 +1,3 @@
-import { IncomingMessage, ServerResponse } from "http";
 
 export interface CrossOriginResourcePolicyOptions {
   policy?: string;
@@ -6,33 +5,16 @@ export interface CrossOriginResourcePolicyOptions {
 
 const ALLOWED_POLICIES = new Set(["same-origin", "same-site", "cross-origin"]);
 
-function getHeaderValueFromOptions({
-  policy = "same-origin",
-}: Readonly<CrossOriginResourcePolicyOptions>): string {
-  if (ALLOWED_POLICIES.has(policy)) {
+export function get_header_value_from_options({ policy = "same-origin", }: Readonly<CrossOriginResourcePolicyOptions>): string { if (ALLOWED_POLICIES.has(policy)) {
     return policy;
-  } else {
-    throw new Error(
-      `Cross-Origin-Resource-Policy does not support the ${JSON.stringify(
-        policy
-      )} policy`
-    );
   }
-}
+  throw new Error(
+    `Cross-Origin-Resource-Policy does not support the ${JSON.stringify( policy)} policy`
+  );
+} // export function
 
-function crossOriginResourcePolicy(
-  options: Readonly<CrossOriginResourcePolicyOptions> = {}
-) {
-  const headerValue = getHeaderValueFromOptions(options);
+export function cross_origin_resource_policy(r: Response, options: Readonly<CrossOriginResourcePolicyOptions> = {}) {
+  r.headers.set("Cross-Origin-Resource-Policy", get_header_value_from_options(options));
+  return r
+} // export function
 
-  return function crossOriginResourcePolicyMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ) {
-    res.setHeader("Cross-Origin-Resource-Policy", headerValue);
-    next();
-  };
-}
-
-export default crossOriginResourcePolicy;

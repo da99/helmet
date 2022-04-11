@@ -1,14 +1,9 @@
-import { IncomingMessage, ServerResponse } from "http";
+/// <reference no-default-lib="true" />
+/// <reference lib="esnext" />
+import 'https://raw.githubusercontent.com/cloudflare/workers-types/master/index.d.ts';
 
-function crossOriginEmbedderPolicy() {
-  return function crossOriginEmbedderPolicyMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ): void {
-    res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-    next();
-  };
-}
+export function cross_origin_embedder_policy(r: Response) {
+  r.headers.set("Cross-Origin-Embedder-Policy", "require-corp");
+  return r;
+} // export function
 
-export default crossOriginEmbedderPolicy;

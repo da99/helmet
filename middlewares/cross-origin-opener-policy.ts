@@ -1,4 +1,8 @@
-import { IncomingMessage, ServerResponse } from "http";
+
+
+// =============================================================================
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy
+// =============================================================================
 
 export interface CrossOriginOpenerPolicyOptions {
   policy?: string;
@@ -10,33 +14,18 @@ const ALLOWED_POLICIES = new Set([
   "unsafe-none",
 ]);
 
-function getHeaderValueFromOptions({
-  policy = "same-origin",
-}: Readonly<CrossOriginOpenerPolicyOptions>): string {
+export function get_header_value_from_options({ policy = "same-origin", }: Readonly<CrossOriginOpenerPolicyOptions>): string {
   if (ALLOWED_POLICIES.has(policy)) {
     return policy;
   } else {
     throw new Error(
-      `Cross-Origin-Opener-Policy does not support the ${JSON.stringify(
-        policy
-      )} policy`
+      `Cross-Origin-Opener-Policy does not support the ${JSON.stringify( policy)} policy`
     );
   }
-}
+} // export function
 
-function crossOriginOpenerPolicy(
-  options: Readonly<CrossOriginOpenerPolicyOptions> = {}
-) {
-  const headerValue = getHeaderValueFromOptions(options);
+export function cross_origin_opener_policy(r: Response, options: Readonly<CrossOriginOpenerPolicyOptions> = {}) {
+  r.headers.set("Cross-Origin-Opener-Policy", get_header_value_from_options(options));
+  return r;
+} // export function
 
-  return function crossOriginOpenerPolicyMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ) {
-    res.setHeader("Cross-Origin-Opener-Policy", headerValue);
-    next();
-  };
-}
-
-export default crossOriginOpenerPolicy;
