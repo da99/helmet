@@ -9,8 +9,8 @@ There are [some other vulnerabilities](https://miki.it/blog/2014/7/8/abusing-jso
 This middleware prevents Chrome, Opera 13+, IE 8+ and [Firefox 50+](https://bugzilla.mozilla.org/show_bug.cgi?id=471020) from doing this sniffing. The following example sets the `X-Content-Type-Options` header to its only option, `nosniff`:
 
 ```javascript
-import {X_Content_Type_Options} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-content-type-options.ts";
-X_Content_Type_Options(my_response)l
+import {x_content_type_options} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-content-type-options.ts";
+x_content_type_options(my_response);
 ```
 
 [MSDN has a good description](https://msdn.microsoft.com/en-us/library/gg622941%28v=vs.85%29.aspx) of how browsers behave when this header is sent.

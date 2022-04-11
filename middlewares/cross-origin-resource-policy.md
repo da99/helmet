@@ -9,8 +9,8 @@ import {cross_origin_resource_policy} from "https://raw.githubusercontent.com/da
 
 // Sets "Cross-Origin-Resource-Policy: same-origin"
 cross_origin_resource_policy(my_response)
-cross_origin_resource_policy(my_response, { policy: "same-origin" })
+cross_origin_resource_policy(my_response, "same-origin")
 
 // Sets "Cross-Origin-Resource-Policy: same-site"
-cross_origin_resource_policy(my_response, { policy: "same-site" })
+cross_origin_resource_policy(my_response, "same-site")
 ```

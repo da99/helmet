@@ -1,22 +1,6 @@
-import { IncomingMessage, ServerResponse } from "http";
 
-export interface XDnsPrefetchControlOptions {
-  allow?: boolean;
-}
+export function x_dns_prefetch_control( r: Response, setting: "on" | "off" = "off") {
+  r.headers.set("X-DNS-Prefetch-Control", setting);
+  return r;
+} // export function
 
-function xDnsPrefetchControl(
-  options: Readonly<XDnsPrefetchControlOptions> = {}
-) {
-  const headerValue = options.allow ? "on" : "off";
-
-  return function xDnsPrefetchControlMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ): void {
-    res.setHeader("X-DNS-Prefetch-Control", headerValue);
-    next();
-  };
-}
-
-export default xDnsPrefetchControl;
