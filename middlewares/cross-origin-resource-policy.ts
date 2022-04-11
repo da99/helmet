@@ -5,7 +5,8 @@ export interface CrossOriginResourcePolicyOptions {
 
 const ALLOWED_POLICIES = new Set(["same-origin", "same-site", "cross-origin"]);
 
-export function get_header_value_from_options({ policy = "same-origin", }: Readonly<CrossOriginResourcePolicyOptions>): string { if (ALLOWED_POLICIES.has(policy)) {
+export function get_header_value_from_options({ policy = "same-origin", }: Readonly<CrossOriginResourcePolicyOptions>): string {
+  if (ALLOWED_POLICIES.has(policy)) {
     return policy;
   }
   throw new Error(

@@ -6,22 +6,18 @@ The [Referer HTTP header](https://en.wikipedia.org/wiki/HTTP_referer) is typical
 
 Usage:
 
-```javascript
-const referrerPolicy = require("referrer-policy");
+```typescript
+import {referrer_policy} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/referrer_policy.ts";
 
-app.use(referrerPolicy({ policy: "same-origin" }));
+referrer_policy(my_response, { policy: "same-origin" });
 // Referrer-Policy: same-origin
 
-app.use(referrerPolicy({ policy: "unsafe-url" }));
+referrer_policy(my_response, { policy: "unsafe-url" });
 // Referrer-Policy: unsafe-url
 
-app.use(
-  referrerPolicy({
-    policy: ["no-referrer", "unsafe-url"],
-  })
-);
+referrer_policy(my_response, { policy: ["no-referrer", "unsafe-url"], })
 // Referrer-Policy: no-referrer,unsafe-url
 
-app.use(referrerPolicy());
+referrer_policy(my_response);
 // Referrer-Policy: no-referrer
 ```

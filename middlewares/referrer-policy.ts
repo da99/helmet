@@ -1,4 +1,3 @@
-import { IncomingMessage, ServerResponse } from "http";
 
 export interface ReferrerPolicyOptions {
   policy?: string | string[];
@@ -16,9 +15,7 @@ const ALLOWED_TOKENS = new Set<string>([
   "",
 ]);
 
-function getHeaderValueFromOptions({
-  policy = ["no-referrer"],
-}: Readonly<ReferrerPolicyOptions>): string {
+export function get_header_value_from_options({ policy = ["no-referrer"], }: Readonly<ReferrerPolicyOptions>): string {
   const tokens = typeof policy === "string" ? [policy] : policy;
 
   if (tokens.length === 0) {
@@ -44,19 +41,10 @@ function getHeaderValueFromOptions({
   });
 
   return tokens.join(",");
-}
+} // export function
 
-function referrerPolicy(options: Readonly<ReferrerPolicyOptions> = {}) {
-  const headerValue = getHeaderValueFromOptions(options);
+export function referrer_policy(r: Response, options: Readonly<ReferrerPolicyOptions> = {}) {
+  r.headers.set("Referrer-Policy", get_header_value_from_options(options));
+  return r;
+} // export function
 
-  return function referrerPolicyMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ) {
-    res.setHeader("Referrer-Policy", headerValue);
-    next();
-  };
-}
-
-export default referrerPolicy;
