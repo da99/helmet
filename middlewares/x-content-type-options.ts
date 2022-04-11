@@ -1,14 +1,5 @@
-import { IncomingMessage, ServerResponse } from "http";
 
-function xContentTypeOptions() {
-  return function xContentTypeOptionsMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ) {
-    res.setHeader("X-Content-Type-Options", "nosniff");
-    next();
-  };
-}
-
-export default xContentTypeOptions;
+export function X_Content_Type_Options(r: Response) {
+  r.headers.set("X-Content-Type-Options", "nosniff");
+  return r;
+} // export function

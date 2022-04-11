@@ -1,6 +1,3 @@
-/// <reference no-default-lib="true" />
-/// <reference lib="esnext" />
-import 'https://raw.githubusercontent.com/cloudflare/workers-types/master/index.d.ts';
 
 export function none() { return "'none'"; } // function
 export function self() { return "'self'"; } // function

@@ -1,7 +1,3 @@
-/// <reference no-default-lib="true" />
-/// <reference lib="esnext" />
-import 'https://raw.githubusercontent.com/cloudflare/workers-types/master/index.d.ts';
-
 export interface ReferrerPolicyOptions {
   policy?: string | string[];
 }
@@ -29,15 +25,11 @@ export function get_header_value_from_options({ policy = ["no-referrer"], }: Rea
   tokens.forEach((token) => {
     if (!ALLOWED_TOKENS.has(token)) {
       throw new Error(
-        `Referrer-Policy received an unexpected policy token ${JSON.stringify(
-          token
-        )}`
+        `Referrer-Policy received an unexpected policy token ${JSON.stringify(token)}`
       );
     } else if (tokensSeen.has(token)) {
       throw new Error(
-        `Referrer-Policy received a duplicate policy token ${JSON.stringify(
-          token
-        )}`
+        `Referrer-Policy received a duplicate policy token ${JSON.stringify(token)}`
       );
     }
     tokensSeen.add(token);
