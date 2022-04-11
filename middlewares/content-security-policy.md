@@ -8,45 +8,33 @@ This middleware helps set Content Security Policies.
 
 Basic usage:
 
-```javascript
-const contentSecurityPolicy = require("helmet-csp");
+```typescript
+import { none, self, content_security_policy } from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/content-security-policy.ts";
 
-app.use(
-  contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      defaultSrc: ["'self'", "default.example"],
-      scriptSrc: ["'self'", "js.example.com"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-    reportOnly: false,
-  })
-);
+let response = content_security_policy(new Response(..., ...), {
+  "default-src": self(),
+  "script-src": none()
+});
+
 ```
 
 If no directives are supplied, the following policy is set (whitespace added for readability):
 
-    default-src 'self';
-    base-uri 'self';
-    block-all-mixed-content;
-    font-src 'self' https: data:;
-    form-action 'self';
-    frame-ancestors 'self';
-    img-src 'self' data:;
-    object-src 'none';
-    script-src 'self';
-    script-src-attr 'none';
-    style-src 'self' https: 'unsafe-inline';
-    upgrade-insecure-requests
+```typescript
 
-You can use this default with the `useDefaults` option. `useDefaults` is `true` by default.
+const DEFAULTS: Directives = {
+  "default-src": none(),
+  "base-uri": self(),
+  "form-action": none(),
+  "frame-ancestors": none(),
+  "img-src": self(),
+  "object-src": none(),
+  "script-src": none(),
+  "script-src-attr": none(),
+  "style-src": none(),
+};
 
-You can also get the default directives object with `contentSecurityPolicy.getDefaultDirectives()`.
-
-You can set any directives you wish. `defaultSrc` is required, but can be explicitly disabled by setting its value to `contentSecurityPolicy.dangerouslyDisableDefaultSrc`. Directives can be kebab-cased (like `script-src`) or camel-cased (like `scriptSrc`). They are equivalent, but duplicates are not allowed.
-
-The `reportOnly` option, if set to `true`, sets the `Content-Security-Policy-Report-Only` header instead. If you want to set _both_ the normal and `Report-Only` headers, see [this code snippet](https://github.com/helmetjs/helmet/issues/351#issuecomment-1015498560).
+```
 
 This middleware does minimal validation. You should use a more sophisticated CSP validator, like [Google's CSP Evaluator](https://csp-evaluator.withgoogle.com/), to make sure your CSP looks good.
 
@@ -55,6 +43,7 @@ This middleware does minimal validation. You should use a more sophisticated CSP
 You can dynamically generate nonces to allow inline `<script>` tags to be safely evaluated. Here's a simple example:
 
 ```js
+# TODO: Adapt this to DENO:
 const crypto = require("crypto");
 const contentSecurityPolicy = require("helmet-csp");
 
