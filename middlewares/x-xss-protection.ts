@@ -1,14 +1,6 @@
-import { IncomingMessage, ServerResponse } from "http";
 
-function xXssProtection() {
-  return function xXssProtectionMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ) {
-    res.setHeader("X-XSS-Protection", "0");
-    next();
-  };
-}
+export function x_xss_protection(r: Response) {
+  r.headers.set("X-XSS-Protection", "0");
+  return r;
+} // export function
 
-export default xXssProtection;
