@@ -10,6 +10,15 @@ That's ok. I'm not smart enough for that. That is why I stick with Deno
 and Cloudflare.  Smart people stick with React/NodeJS/AWS. Dummies like me
 stick with Deno on Cloudflare.
 
+## Quick start
+
+  * Learn JavaScript.
+  * Learn TypeScript.
+  * Learn Deno.
+  * Learn ESM (ie ECMAScript) modules.
+  * Learn Cloudflare Workers.
+  * Give up and get a real job outside of software.
+
 # Lockdown those header values the lazy/default way:
 
 ```typescript
@@ -38,14 +47,17 @@ stick with Deno on Cloudflare.
   //   sets X-XSS-Protection to: "0" ✓
 ```
 
-## Quick start
+## Helpers
+```typescript
+  import {
+    access_control_allow_origin,
+    content_json,
+    content_html,
+    content_text,
+    default_404
+  } from "https://raw.githubusercontent.com/da99/helmet.ts/main/index.ts";
 
-  * Learn JavaScript.
-  * Learn TypeScript.
-  * Learn Deno.
-  * Learn ESM (ie ECMAScript) modules.
-  * Learn Cloudflare Workers.
-  * Give up and get a real job outside of software.
+```
 
 ## Running the tests:
 

@@ -74,41 +74,38 @@ export function default_404(r : Request) : Response {
   if (r.method !== "GET")
     return JSON_404({not_found: r.url});
 
-  return(
-    new Response(
-      `not found: ${r.url}`,
-      {
-        headers: {"content-type": "text/plain"},
-        status: 404
-      }
-    )
-  );
+  const resp = helmet(new Response( `not found: ${r.url}`, { status: 404 }));
+  return(content_text(resp));
 } // function
 
-export function JSON_200(x : Record<string, unknown>) {
-  return new Response(
-    JSON.stringify(x),
-    {
-      headers: { 'content-type': "application/json; charset=UTF-8" },
-      status: 200,
-      statusText: "found"
-    }
-  );
+export function JSON_200(x : Record<string, unknown>) : Response {
+  const r = new Response(JSON.stringify(x), { status: 200, });
+  content_json(r);
+  return helmet(r);
 } // function
 
-export function JSON_404(x : Record<string, unknown>) {
+export function JSON_404(x : Record<string, unknown>) : Response {
   const r = new Response(JSON.stringify(x), { status: 404 });
   content_json(r);
-  access_control_allow_origin(r)
-  return r;
+  return helmet(r);
 } // function
 
 export function access_control_allow_origin(r: Response, raw_value: string = '*') {
   const value = raw_value.trim().toLowerCase();
   if (value === "null")
-    throw new Error("You can't use null. That is insecure: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin");
+    throw new Error("You may not use 'null'. That is insecure: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin");
   r.headers.set("Access-Control-Allow-Origin", value);
   return r;
+} // export function
+
+export function content_html(r: Response) {
+  r.headers.set('Content-Type', "text/html; charset=UTF-8");
+  return r
+} // export function
+
+export function content_text(r: Response) {
+  r.headers.set('Content-Type', "text/plain; charset=UTF-8");
+  return r
 } // export function
 
 export function content_json(r: Response) {
