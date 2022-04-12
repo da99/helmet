@@ -50,6 +50,7 @@ stick with Deno on Cloudflare.
 ## Running the tests:
 
   * Have Deno installed and in your $PATH.
+  * `bin/upgrade` -- Clears Deno's cache for each .ts file in this dir.
   * `bin/test`
 
 # Complaints? Suggestions?

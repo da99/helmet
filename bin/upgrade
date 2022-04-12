@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -u -e -o pipefail
+
+(echo index.ts; find ./middlewares -type f -name '*.ts') | while IFS= read -r x ; do
+  echo "=== deno cache --reload $x"
+  deno cache --reload "$x"
+done # for
+
+echo "============= Done updating. =========="
