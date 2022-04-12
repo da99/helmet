@@ -1,14 +1,5 @@
-import { IncomingMessage, ServerResponse } from "http";
 
-function xPoweredBy() {
-  return function xPoweredByMiddleware(
-    _req: IncomingMessage,
-    res: ServerResponse,
-    next: () => void
-  ) {
-    res.removeHeader("X-Powered-By");
-    next();
-  };
-}
-
-export default xPoweredBy;
+export function x_powered_by(r: Response) {
+  r.headers.delete("X-Powered-By");
+  return r;
+} // export function
