@@ -17,13 +17,19 @@ for (const target of ["default-src 'none';", "base-uri 'self';", "form-action 'n
 for (const [k,v] of Object.entries({
 "Cross-Origin-Embedder-Policy": "require-corp",
 "Cross-Origin-Opener-Policy": "same-origin",
-"Referrer-Policy": "no-referrer"
+"Referrer-Policy": "no-referrer",
+"X-Content-Type-Options": "nosniff",
+"X-DNS-Prefetch-Control": "off",
+"X-Download-Options": "noopen",
+"X-Frame-Options": "DENY",
+"X-Permitted-Cross-Domain-Policies": "none",
+"X-Powered-By": null,
+"X-XSS-Protection": "0"
 })) {
   it(`sets ${k} to: ${Deno.inspect(v)}`, function () {
     const r = new Response();
     helmet(r);
-    const actual = r.headers.get(k) || "";
-    equals(actual, v, actual);
+    equals(r.headers.get(k), v);
   });
 } // for ... of
 
