@@ -14,7 +14,15 @@ for (const target of ["default-src 'none';", "base-uri 'self';", "form-action 'n
   });
 } // for ... of
 
+it(`sets Cross-Origin-Embedder-Policy to : require-corp`, function () {
+  const r = new Response();
+  helmet(r);
+  const actual = r.headers.get("Cross-Origin-Embedder-Policy") || "";
+  equals(actual, "require-corp");
+});
+
+
 // =============================================================================
-// Finish it:
+// The tests have been defined. Let's the tests:
 // =============================================================================
 await finish();
