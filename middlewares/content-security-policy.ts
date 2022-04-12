@@ -21,7 +21,7 @@ const DEFAULTS: Directives = {
   "style-src": none(),
 };
 
-export function content_security_policy(r: Response, raw: Directives) {
+export function content_security_policy(r: Response, raw: Partial<Directives> = {}) {
   const new_d = Object.assign({}, DEFAULTS, raw);
   r.headers.set("Content-Security-Policy", to_string(new_d));
   return r;
@@ -30,8 +30,8 @@ export function content_security_policy(r: Response, raw: Directives) {
 export function to_string(d: Directives) {
   const vals: string[] = [];
   for (const k in d) {
-    vals.push(`${k} ${d[k as Directive]}`)
+    vals.push(`${k} ${d[k as Directive]};`)
   }
-  return vals.join("; ")
+  return vals.join(" ")
 } // export function
 

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -u -e -o pipefail
+
+set -x
+mkdir -p tmp/spec
+deno run --allow-write=tmp/spec --allow-read=tmp/spec test/index.ts
+# case "$*" in
+#   something)
+#     ;;
+#
+#   *)
+#     echo "!!! Unknown commands: $0 $*" >&2
+#     exit 2
+#     ;;
+# esac

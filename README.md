@@ -18,5 +18,13 @@ very specific. You don't want this.
 
 # Helmet maintainer readme
 
-If you find something better than this for
-module Cloudflare Workers, please tell me.
+If you find something better than this for module Cloudflare Workers, please tell me.
+
+# Lockdown those header values the lazy/default way:
+
+```typescript
+
+import { helmet } from "https://raw.githubusercontent.com/da99/helmet/main/index.ts";
+const r = new Response();
+helmet(r);
+```

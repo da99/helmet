@@ -11,7 +11,8 @@ Basic usage:
 ```typescript
 import { none, self, content_security_policy } from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/content-security-policy.ts";
 
-let response = content_security_policy(new Response(..., ...), {
+const r = new Response(...);
+let response = content_security_policy(r, {
   "default-src": self(),
   "script-src": none()
 });
@@ -21,6 +22,9 @@ let response = content_security_policy(new Response(..., ...), {
 If no directives are supplied, the following policy is set (whitespace added for readability):
 
 ```typescript
+
+const r = new Response(...);
+content_security_policy(r);
 
 const DEFAULTS: Directives = {
   "default-src": none(),
