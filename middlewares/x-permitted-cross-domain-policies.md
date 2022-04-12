@@ -4,19 +4,18 @@ The `X-Permitted-Cross-Domain-Policies` header tells some web clients (like Adob
 
 Usage:
 
-```javascript
-const crossdomain = require("helmet-crossdomain");
-
-// Sets X-Permitted-Cross-Domain-Policies: none
-app.use(crossdomain());
+```typescript
+import {x_permitted_cross_domain_policies} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-permitted-cross-domain-policies.ts";
 
 // You can use any of the following values:
-app.use(crossdomain({ permittedPolicies: "none" }));
-app.use(crossdomain({ permittedPolicies: "master-only" }));
-app.use(crossdomain({ permittedPolicies: "by-content-type" }));
-app.use(crossdomain({ permittedPolicies: "all" }));
+const r = new Response(...);
+x_permitted_cross_domain_policies(r); // defaults to: none
+x_permitted_cross_domain_policies(r, "none");
+x_permitted_cross_domain_policies(r, "master-only");
+x_permitted_cross_domain_policies(r, "by-content-type");
+x_permitted_cross_domain_policies(r, "all");
 ```
 
-The `by-ftp-type` is not currently supported. Please open an issue or pull request if you desire this feature!
+The `by-ftp-type` will never be supported. So don't even mention it. You don't need it. Come up with a better alternative.
 
 If you don't expect Adobe products to load data from your site, you get a minor security benefit by adding this header.
