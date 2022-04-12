@@ -9,14 +9,14 @@ If your app does not need to be framed (and most don't) you can use `DENY`. If y
 Usage:
 
 ```javascript
-const frameguard = require("frameguard");
+import {x_frame_options} from "https://github.com/da99/helmet/raw/main/middlewares/x-frame-options.ts";
 
 // Don't allow me to be in ANY frames:
-app.use(frameguard({ action: "deny" }));
+x_frame_options(my_response); // defaults to "DENY"
+x_frame_options(my_response, "DENY");
 
 // Only let me be framed by people of the same origin:
-app.use(frameguard({ action: "sameorigin" }));
-app.use(frameguard()); // defaults to sameorigin
+x_frame_options(my_response, "SAMEORIGIN");
 ```
 
 A legacy action, `ALLOW-FROM`, is not supported by this middleware. [Read more here.](https://github.com/helmetjs/helmet/wiki/How-to-use-X%E2%80%93Frame%E2%80%93Options's-%60ALLOW%E2%80%93FROM%60-directive)
