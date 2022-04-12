@@ -5,7 +5,7 @@ This middleware lets you set the `X-DNS-Prefetch-Control` to control browsers' D
 Usage:
 
 ```typescript
-import {x_dns_prefetch_control} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-dns-prefetch-control.ts";
+import {x_dns_prefetch_control} from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/x-dns-prefetch-control.ts";
 
 // Set X-DNS-Prefetch-Control: off
 x_dns_prefetch_control(my_response);

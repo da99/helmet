@@ -5,7 +5,7 @@ The `X-Permitted-Cross-Domain-Policies` header tells some web clients (like Adob
 Usage:
 
 ```typescript
-import {x_permitted_cross_domain_policies} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-permitted-cross-domain-policies.ts";
+import {x_permitted_cross_domain_policies} from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/x-permitted-cross-domain-policies.ts";
 
 // You can use any of the following values:
 const r = new Response(...);

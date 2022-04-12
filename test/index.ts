@@ -14,12 +14,18 @@ for (const target of ["default-src 'none';", "base-uri 'self';", "form-action 'n
   });
 } // for ... of
 
-it(`sets Cross-Origin-Embedder-Policy to : require-corp`, function () {
-  const r = new Response();
-  helmet(r);
-  const actual = r.headers.get("Cross-Origin-Embedder-Policy") || "";
-  equals(actual, "require-corp");
-});
+for (const [k,v] of Object.entries({
+"Cross-Origin-Embedder-Policy": "require-corp",
+"Cross-Origin-Opener-Policy": "same-origin",
+"Referrer-Policy": "no-referrer"
+})) {
+  it(`sets ${k} to: ${Deno.inspect(v)}`, function () {
+    const r = new Response();
+    helmet(r);
+    const actual = r.headers.get(k) || "";
+    equals(actual, v, actual);
+  });
+} // for ... of
 
 
 // =============================================================================

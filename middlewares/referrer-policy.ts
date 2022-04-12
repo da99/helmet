@@ -7,7 +7,7 @@
 // Usage:
 //
 // ```typescript
-// import {referrer_policy} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/referrer_policy.ts";
+// import {referrer_policy} from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/referrer_policy.ts";
 //
 // referrer_policy(my_response, "same-origin");
 // // Referrer-Policy: same-origin

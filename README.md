@@ -24,7 +24,7 @@ If you find something better than this for module Cloudflare Workers, please tel
 
 ```typescript
 
-import { helmet } from "https://raw.githubusercontent.com/da99/helmet/main/index.ts";
+import { helmet } from "https://raw.githubusercontent.com/da99/helmet.ts/main/index.ts";
 const r = new Response();
 helmet(r);
 ```

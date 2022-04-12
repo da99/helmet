@@ -3,7 +3,7 @@
 This middleware sets the `X-Download-Options` header to `noopen` to prevent Internet Explorer users from executing downloads in your site's context.
 
 ```typescript
-import {x_download_options} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-download-options.ts";
+import {x_download_options} from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/x-download-options.ts";
 x_download_options(my_response)
 ```
 

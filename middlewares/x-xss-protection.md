@@ -7,7 +7,7 @@ Many browsers have chosen to remove it because of the unintended security issues
 This middleware sets the `X-XSS-Protection` header to `0`. For example:
 
 ```typescript
-import {x_xss_protection} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-xss-protection.ts";
+import {x_xss_protection} from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/x-xss-protection.ts";
 
 // Set "X-XSS-Protection: 0"
 const r = new Response();

@@ -6,7 +6,7 @@
 // Usage:
 //
 // ```typescript
-// import {cross_origin_resource_policy} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/cross-origin-resource-policy.ts";
+// import {cross_origin_resource_policy} from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/cross-origin-resource-policy.ts";
 //
 // // Sets "Cross-Origin-Resource-Policy: same-origin"
 // cross_origin_resource_policy(my_response)

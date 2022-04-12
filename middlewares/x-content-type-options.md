@@ -9,7 +9,7 @@ There are [some other vulnerabilities](https://miki.it/blog/2014/7/8/abusing-jso
 This middleware prevents Chrome, Opera 13+, IE 8+ and [Firefox 50+](https://bugzilla.mozilla.org/show_bug.cgi?id=471020) from doing this sniffing. The following example sets the `X-Content-Type-Options` header to its only option, `nosniff`:
 
 ```javascript
-import {x_content_type_options} from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/x-content-type-options.ts";
+import {x_content_type_options} from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/x-content-type-options.ts";
 x_content_type_options(my_response);
 ```
 

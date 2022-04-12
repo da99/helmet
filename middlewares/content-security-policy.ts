@@ -12,7 +12,7 @@ unwanted trackers, and other web client-side attacks.
 
 This middleware helps set Content Security Policies.
   ```typescript
-    import { none, self, content_security_policy } from "https://raw.githubusercontent.com/da99/helmet/main/middlewares/content-security-policy.ts";
+    import { none, self, content_security_policy } from "https://raw.githubusercontent.com/da99/helmet.ts/main/middlewares/content-security-policy.ts";
 
     const r = new Response(...);
     let response = content_security_policy(r, {
