@@ -51,10 +51,13 @@ stick with Deno on Cloudflare.
 ```typescript
   import {
     access_control_allow_origin,
+    constant_time_compare,
     content_json,
     content_html,
     content_text,
-    default_404
+    default_404,
+    JSON_200,
+    JSON_404,
   } from "https://raw.githubusercontent.com/da99/helmet.ts/main/index.ts";
 
 ```
