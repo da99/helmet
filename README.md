@@ -1,11 +1,14 @@
 # Helmet
 
-You want the original version:
+You want the original version for NodeJS users:
 
 [https://github.com/helmetjs/helmet](https://github.com/helmetjs/helmet)
 
 This Helmet is only for module Cloudflare workers developed on Deno. That is
-very specific. You don't want this. 
+very specific. Chances are you are one of those React people using AWS.
+That's ok. I'm not smart enough for that. That is why I stick with Deno
+and Cloudflare.  Smart people stick with React/NodeJS/AWS. Dummies like me
+stick with Deno on Cloudflare.
 
 # Lockdown those header values the lazy/default way:
 
